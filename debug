@@ -1,0 +1,22 @@
+正在编译易模块"鱼刺类.HTTP", 文件名: "C:\资料\h5接口\鱼刺类.Http.ec", 版本号: "6.0", 创建号: "5.0", 作者: "Bints".
+正在进行名称连接...
+正在统计需要编译的子程序
+正在编译...
+正在生成主程序入口代码
+程序代码编译成功
+正在封装易格式目的代码
+开始运行被调试程序
+* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+* ★╔═══════════════════════════╗★
+* ★║模块名称：鱼刺类.HTTP          版本：v6.0(20190309)   ║★
+* ★║模块作者：Bints.鱼刺.小小小鱼  QQ号：521573           ║★
+* ★║版权所有：逆向思维.小伙伴      QQ群：87555687         ║★
+* ★║作者小站：www.nixsw.com        QQ群：5560233          ║★
+* ★╚═══════════════════════════╝★
+* ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+* “{"code":"10000","message":"login start state","success":true}”
+* “{"code":"10000","message":"login start state","success":true}”
+* “{"code":"10001","message":"mobile scan QRCode success","success":true}”
+* “{"code":"10001","message":"mobile scan QRCode success","success":true}”
+* “{"site":"0","code":"10006","success":true,"token":"b69aab855ddc9013c4ee09d7f6e07836","nick":"冰尹天依"}”
+* “{"api":"com.taobao.mtop.login.loginByKey","data":{"nick":"冰尹天依","loginTime":"1557568851","ssoToken":"xBkk9VPXvmtaukbRFWd/S2dUt8FioM8jqCyQlCLl5iv8qtb6cNdqmwopV6i478r9Dd+UYTgOqqlIKG/UeR3MpcZQMTC/HY6etySTD564lwjxCjimlHR6EYRpqK37YA6gYBnTEJggFuL2kEAiSAO8Xyh5ertianDH194iGUXJji+R+ODjpEwC9TYfiE5Zvjg0","userId":"771970063","sid":"39a3630c58e62b81685043dcdd350ca3","ecode":"VEzIQ"},"ret":["SUCCESS::调用成功"],"v":"1.0"}”

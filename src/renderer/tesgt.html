@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="GBK" />
+    <!--SEO-->
+    <meta name="author" content="" />
+    <meta name="copyright" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport" />
+    <link type="text/css" rel="stylesheet" href="https://a.alipayobjects.com/u/ecmng/css/201412/47j19jkoov.css">
+    <link rel='stylesheet' href='https://a.alipayobjects.com/u/ecmng/css/201412/47j19jkoov.css' media='only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)' />
+    <link type="text/css" rel="stylesheet" href="https://a.alipayobjects.com/u/css/201212/1mE9uO0FWG.css">
+    <link href="https://i.alipayobjects.com/e/201212/1lvpookLem.png" rel="apple-touch-icon-precomposed" />
+
+
+    <script charset="utf-8" id="seajsnode"src="https://static.alipayobjects.com/seajs/??seajs/2.2.2/sea.js"></script>
+    <script src="https://a.alipayobjects.com/personalprod/jquery.1.7.2/1.0.0/jquery.1.7.2.js" charset="utf-8"></script>
+    <script src="https://a.alipayobjects.com/personalprod/widget/1.0.0/widget.js" charset="utf-8"></script>
+    <script src="https://a.alipayobjects.com/personalprod/base/1.0.0/base.js" charset="utf-8"></script>
+    <script src="https://a.alipayobjects.com/personalprod/validatorReg/1.0.1/validatorReg.js" charset="utf-8"></script>
+
+    <title>支付宝</title>
+</head>
+
+<body>
+<header id="header">
+    <div id="title">
+        <h1>找人代付</h1>
+    </div>
+</header>
+<script>
+    var json_ua;
+</script>
+<script type="text/javascript" charset="utf-8" src="https://rds.alipay.com/ua_personalprod_WapPeerPay_apply.js?t=2019051210"></script>
+<article class="box-alpaha">
+    <p>来自：淘宝网</p>
+    <tr>
+        <p>
+        <td>
+            商品：
+        </td>
+        <td>担保交易--超高跟鞋女 细跟尖头浅口鞋亚光黑色12cm10cm8cm职业女鞋公主秋季</td>
+        </p>
+    </tr>
+    </p>
+    <p>应付总价：128.00 元</p>
+    <p>代付申请人：王*（sn_***@qq.com）</p>
+    <form name="peerpay" method="post" action="https://shenghuo.alipay.com:443/peerpaycore/peerPayApplySubmit.htm?orderId=0512aa5ba577d3770e65054051634815&_wap_app_name=peerpay&peerpayType=NEW_PPAY" class="pd-lr10">
+        <input type="hidden" name="_form_token" value="7cca56d1c0d77f831ef62e944c0c27814f92d209f4874e33a6d7eaf0e10a5da6GZ00"/>
+        <div class="fm-item">
+            <p class="fm-error">	</p>
+            <input type="text"  name="peerPayerEmail"
+                   value="" placeholder="代付人支付宝账户或手机号码">
+        </div>
+        <input type="hidden" name="peerPayerCardNo" value=""/>
+        <p class="mg-b8"><a href="/peerpaycore/selContacts.htm?orderId=0512aa5ba577d3770e65054051634815&peerpayType=NEW_PPAY&_wap_app_name=peerpay">选择联系人</a></p>
+        <input name="alipay_ua" type="hidden" id="J-alipay_ua" />
+        <input name="rdsToken" type="hidden" value="FVtOBYcV8O3KOWNCrAVjnByR8JIaPT7M" />
+        <input type="submit" value="确定" class="btn btn-ok">
+    </form>
+</article>
+</article>
+<nav class="more-nav">
+</nav>
+<script type="text/javascript">
+    AI(function () {
+        var cardNoElm = AI('input[name="peerPayerCardNo"]');
+        var emailElm = AI('input[name="peerPayerEmail"]');
+        emailElm.on('change', function(){
+            cardNoElm.val('');
+        });
+
+        var config = {
+            'form': 'form[name=peerpay]',
+            'rules': {
+
+                'input[name=randomCode]': {
+                    desc: '短信验证码',
+                    type:['number']
+                }
+            },
+            beforeSubmit: function(){
+                AI('input[name="alipay_ua"]').val(json_ua);
+
+                if(emailElm.val().indexOf('*') !== -1 && cardNoElm.val()){
+                    return true;
+                }
+                cardNoElm.val('');
+                var reg = AI.Widget.Pattern.alipayAccountName;
+                if(!reg.test(emailElm.val())){
+                    emailElm.closest('.fm-item').find('.fm-error').remove().append('<div class="fm-error">账户名格式错误。</div>');
+                    return false;
+                }
+                return true;
+            }
+        };
+        new AI.Widget.Validator(config);
+
+        function countDown(codeBtn, codeTxt){
+            var count = 60;
+            var timer = setInterval(function(){
+                count -= 1;
+                if(count <= 0){
+                    codeTxt.hide();
+                    codeBtn.show();
+                    timer = clearInterval(timer);
+                    return false;
+                }
+                codeTxt.html(count + '秒后重发');
+            }, 1E3);
+            codeBtn.hide();
+            codeTxt.html(count + '秒后重发').show();
+        }
+
+        function setCode(codeBtn, codeTxt){
+            AI.jqueryAjax({
+                url:'https://shenghuo.alipay.com:443/peerpaycore/sendMobileAckCode.json?action=peerpayChoose',
+                method:'post',
+                data:{
+                    orderId:'0512aa5ba577d3770e65054051634815',
+                    peerpayType:'NEW_PPAY'
+                },
+                success:function(data){
+                    if(data.isSuccess){
+                        countDown(codeBtn, codeTxt);
+                    }
+                    else{
+                        alert(data.message);
+                    }
+                },
+                error: function(data){}
+            });
+        }
+
+        var codeTxt = AI('#resendCoundDown');
+        var codeBtn = AI('#resendBtn');
+        if(codeTxt.length > 0){
+            countDown(codeBtn, codeTxt);
+            codeBtn.on('click', function(){
+                setCode(codeBtn, codeTxt);
+            });
+        }
+    });
+</script>
+
+<footer class="t-center" id="footer">
+    <ins class="kong"></ins>
+    <section> 版权所有2004-2018支付宝 </section>
+</footer>
+<div style="color:#BBD3E2;font:12px arial;text-align:center;">personalprod-49-5098</div>
+
+</body>
+</html>
+
+
